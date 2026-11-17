@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonnad Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="adm">
+  <div class="adm-shell">
+    <!-- Sidebar -->
+    <aside class="adm-side" id="admSide" hidden>
+      <div class="logo footer-logo adm-logo" id="admLogo" role="img" aria-label="Sonnad Studio">
+        <span class="logo-word">
+          S<svg class="logo-compass" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="34" class="ring" />
+            <circle cx="50" cy="50" r="28" class="ring-inner" />
+            <polygon points="50,2 55,45 50,50 45,45" class="pt-a" />
+            <polygon points="50,98 55,55 50,50 45,55" class="pt-b" />
+            <polygon points="2,50 45,45 50,50 45,55" class="pt-b" />
+            <polygon points="98,50 55,55 50,50 55,45" class="pt-a" />
+            <polygon points="22,22 47,44 50,50 44,47" class="pt-c" />
+            <polygon points="78,22 56,47 50,50 53,44" class="pt-c" />
+            <polygon points="22,78 44,53 50,50 47,56" class="pt-c" />
+            <polygon points="78,78 53,56 50,50 56,53" class="pt-c" />
+            <circle cx="50" cy="50" r="4" class="hub" />
+          </svg>NNAD
+        </span>
+        <span class="logo-sub">STUDIO</span>
+      </div>
+      <nav id="adminTabs" class="adm-nav" aria-label="Admin sections">
+        <button class="tab active" data-tab="dashboard"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z"/></svg>Dashboard</button>
+        <button class="tab" data-tab="products"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Products<span class="adm-chev">›</span></button>
+        <button class="tab" data-tab="orders"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>Orders<span class="adm-pill" id="navOrders" hidden></span></button>
+        <button class="tab" data-tab="customers"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>Customers</button>
+        <button class="tab" data-tab="categories"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>Categories</button>
+        <button class="tab" data-tab="reviews"><svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>Reviews</button>
+        <button class="tab" data-tab="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+        <button class="tab" data-tab="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</button>
+        <button class="tab" data-logout><svg viewBox="0 0 24 24"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H3"/></svg>Logout</button>
+      </nav>
+      <p class="adm-copy">© <span id="admYear"></span> <span class="adm-store-name">Sonnad Studio</span>.<br>All rights reserved.</p>
+    </aside>
+    <div class="adm-overlay" id="admOverlay" hidden></div>
+
+    <div class="adm-main">
+      <!-- Top bar -->
+      <header class="adm-top" id="admTop" hidden>
+        <button class="adm-menu" id="admMenu" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+        <form class="adm-search" id="admSearch" role="search">
+          <input type="search" id="admSearchInput" placeholder="Search products, orders, customers..." aria-label="Search products, orders, customers" />
+          <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+        </form>
+        <button class="adm-bell" id="admBell" title="New orders waiting" aria-label="New orders"><svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9M10 20a2 2 0 0 0 4 0"/></svg><span class="adm-bell-n" id="admBellN" hidden></span></button>
+        <div class="adm-user">
+          <button class="adm-user-btn" id="admUserBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="adm-avatar" id="admAvatar">A</span>
+            <span class="adm-user-name" id="admUserName">Admin</span>
+            <svg viewBox="0 0 24 24" class="adm-caret"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="adm-user-menu" id="admUserMenu" hidden>
+            <small class="muted" id="adminUser"></small>
+            <a href="/">View store</a>
+            <button type="button" data-goto="profile">Profile &amp; password</button>
+            <button type="button" data-logout>Logout</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="adm-content">
+    <section id="adminApp" hidden>
+      <div class="adm-head">
+        <div>
+          <span class="adm-head-bar"></span>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="adm-range" id="admRangeWrap">
+          <button type="button" class="adm-range-btn" id="admRangeBtn" aria-haspopup="true" aria-expanded="false" aria-controls="admRangeMenu">
+            <span class="adm-range-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+            <span class="adm-range-txt"><small>Showing</small><span id="admRangeLabel">Last 30 Days</span></span>
+            <svg viewBox="0 0 24 24" class="adm-range-caret"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="adm-range-menu" id="admRangeMenu" role="dialog" aria-label="Choose a date range" hidden>
+            <p class="adm-range-h">Quick select</p>
+            <div class="adm-range-quick">
+              <button type="button" data-range="today">Today</button>
+              <button type="button" data-range="7">Last 7 days</button>
+              <button type="button" data-range="30">Last 30 days</button>
+              <button type="button" data-range="90">Last 90 days</button>
+              <button type="button" data-range="month">This month</button>
+              <button type="button" data-range="year">This year</button>
+            </div>
+            <button type="button" class="adm-custom-toggle" id="admCustomToggle" aria-expanded="false" aria-controls="admCustomBody">
+              <span class="adm-custom-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+              <span class="adm-custom-txt">Custom range<small id="admCustomHint">Pick your own dates</small></span>
+              <svg viewBox="0 0 24 24" class="adm-custom-caret"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="adm-custom-body" id="admCustomBody" hidden>
+            <div class="adm-cal-picked">
+              <div class="adm-cal-box" id="admCalFromBox"><small>Start date</small><b id="admCalFrom">Pick a day</b></div>
+              <span class="adm-range-dash" aria-hidden="true">→</span>
+              <div class="adm-cal-box" id="admCalToBox"><small>End date</small><b id="admCalTo">Pick a day</b></div>
+            </div>
+            <div class="adm-cal" id="admCal">
+              <div class="adm-cal-head">
+                <button type="button" data-cal="prev" aria-label="Previous month"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+                <strong id="admCalTitle"></strong>
+                <button type="button" data-cal="next" aria-label="Next month"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+              </div>
+              <div class="adm-cal-week" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+              <div class="adm-cal-grid" id="admCalGrid" role="grid"></div>
+            </div>
+            <p class="adm-range-err" id="admRangeError" role="alert" hidden></p>
+            <button type="button" class="adm-range-apply" id="admApply">Apply custom range</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="adm-stats" id="stats"></div>
+
+      <div id="tab-products" class="adm-card">
+        <div class="adm-card-head">
+          <span class="adm-card-ic"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z" fill="currentColor"/><path d="M3 8l9 5 9-5M12 13v8" stroke="#fff"/></svg></span>
+          <div><h2>Products</h2></div>
+          <button class="adm-btn-gold" id="newProduct"><span aria-hidden="true">+</span> Add Product</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th class="adm-th-act">Actions</th></tr></thead>
+            <tbody id="productRows"></tbody>
+          </table>
+        </div>
+        <div class="adm-pager" id="productPager"></div>
+      </div>
+
+      <div id="tab-categories" class="adm-card" hidden>
+        <div class="adm-card-head">
+          <span class="adm-card-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5" fill="currentColor"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" fill="currentColor"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" fill="currentColor"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" fill="currentColor"/></svg></span>
+          <div><h2>Categories</h2></div>
+          <button class="adm-btn-gold" id="newCategory"><span aria-hidden="true">+</span> Add Category</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Order</th><th>Name</th><th>Icon</th><th>Products</th><th class="adm-th-act">Actions</th></tr></thead>
+            <tbody id="categoryRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab-customers" class="adm-card" hidden>
+        <div class="adm-card-head">
+          <span class="adm-card-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="currentColor"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0z" fill="currentColor"/></svg></span>
+          <div><h2>Customers</h2></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Joined</th><th>Orders</th><th>Spent</th><th>Last order</th></tr></thead>
+            <tbody id="customerRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab-reviews" class="adm-card" hidden>
+        <div class="adm-card-head">
+          <span class="adm-card-ic"><svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z" fill="currentColor"/></svg></span>
+          <div><h2>Reviews</h2></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product</th><th>Customer</th><th>Rating</th><th>Comment</th><th>Date</th><th class="adm-th-act">Actions</th></tr></thead>
+            <tbody id="reviewRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab-settings" hidden>
+        <form id="settingsForm" class="settings-card adm-card" novalidate>
+          <h3 class="settings-title">Store identity</h3>
+          <label>Store name (browser tab, footer, logo text)<input name="storeName" maxlength="60" required /></label>
+          <label>Store description (shown in Google search results)<input name="metaDescription" maxlength="160" /></label>
+          <div class="image-field">
+            <span class="image-field-label">Logo (optional): upload your own, or keep the built-in compass logo</span>
+            <div class="image-field-row">
+              <div class="image-preview logo-preview" id="logoPreview"></div>
+              <div class="image-field-actions">
+                <input type="file" id="logoFile" accept="image/jpeg,image/png,image/webp,image/gif" hidden />
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button type="button" class="btn-ghost" id="logoUpload">Upload logo</button>
+                  <button type="button" class="btn-ghost" id="logoRemove" hidden>Use built-in logo</button>
+                </div>
+                <small class="muted" id="logoStatus">A wide PNG with a transparent background looks best.</small>
+              </div>
+            </div>
+            <input type="hidden" name="logoImage" />
+          </div>
+
+          <h3 class="settings-title">Home banner</h3>
+          <label class="check-row"><input type="checkbox" name="bannerOn" /> Show the banner at the top of the home page</label>
+          <div class="image-field">
+            <span class="image-field-label">Banner picture: leave as "Product photos" for an automatic collage of your products, or upload a wide image (about 1600 × 500 px)</span>
+            <div class="banner-preview" id="bannerPreview"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <input type="file" id="bannerFile" accept="image/jpeg,image/png,image/webp,image/gif" hidden />
+              <button type="button" class="btn-ghost" id="bannerUpload">Upload banner image</button>
+              <button type="button" class="btn-ghost" id="bannerReset">Use product photos</button>
+              <small class="muted" id="bannerStatus">JPG, PNG, WebP or GIF, up to 5 MB.</small>
+            </div>
+            <input type="hidden" name="bannerImage" />
+          </div>
+          <label>Small line above heading<input name="bannerTag" maxlength="40" placeholder="e.g. Personalised gifts &amp; prints" /></label>
+          <label>Heading<input name="bannerTitle" maxlength="80" placeholder="e.g. Gifts with your name on them" /></label>
+          <label>Text<input name="bannerText" maxlength="160" placeholder="One short line about your store" /></label>
+          <div class="form-row">
+            <label>Button text<input name="bannerButton" maxlength="30" placeholder="e.g. Shop now (leave empty for no button)" /></label>
+            <label>Button opens<select name="bannerLink" id="bannerLink"></select></label>
+          </div>
+
+          <h3 class="settings-title">Announcement bar</h3>
+          <label class="check-row"><input type="checkbox" name="announcementOn" /> Show the announcement bar above the header</label>
+          <label>Announcement text<input name="announcement" maxlength="160" placeholder="e.g. Free shipping on orders above ₹999" /></label>
+
+          <h3 class="settings-title">Checkout</h3>
+          <label>Payment note shown at checkout<input name="paymentNote" maxlength="80" placeholder="e.g. Cash on delivery" /></label>
+          <label>Payment note for digital books (how customers pay before downloading)<input name="digitalPaymentNote" maxlength="160" placeholder="e.g. Pay by UPI after ordering; the download unlocks once payment is received." /></label>
+          <label>Payment method name (heading in the Payment Method box)<input name="paymentMethodTitle" maxlength="80" placeholder="e.g. Cash on Delivery (COD)" /></label>
+          <div class="form-row">
+            <label>Delivery charge in ₹ (0 = free delivery)<input name="deliveryCharge" type="number" min="0" step="1" placeholder="0" /></label>
+            <label>Free delivery on orders of ₹ or more (0 = never)<input name="freeDeliveryAbove" type="number" min="0" step="1" placeholder="e.g. 999" /></label>
+          </div>
+          <label>Note when the cart has only digital items (no address needed)<input name="digitalCheckoutNote" maxlength="300" placeholder="e.g. No delivery address needed. Downloads unlock in My Downloads once your order is confirmed." /></label>
+
+          <h3 class="settings-title">Business pack download page</h3>
+          <p class="muted" style="font-size:13px;margin-top:-6px">Shown on every pack's download page. Leave a box empty to hide that text.</p>
+          <label>Line under the pack description<input name="packIntro" maxlength="300" placeholder="e.g. Choose an option below: the complete pack or a single file." /></label>
+          <label>Complete pack text<input name="packCompleteText" maxlength="300" placeholder="e.g. Best if you want everything: all files in one ZIP." /></label>
+          <label>Single file text<input name="packSingleText" maxlength="300" placeholder="e.g. Need just one template? Pick it and click Confirm." /></label>
+          <label>"Before you begin downloading a single file" (leave empty to hide that section)<textarea name="packSingleHelp" rows="3" maxlength="800"></textarea></label>
+          <label>"More download options" text (how to open a ZIP, re-downloading…)<textarea name="packHowToOpen" rows="4" maxlength="800"></textarea></label>
+
+          <h3 class="settings-title">Product page</h3>
+          <div class="form-row">
+            <label>Promise 1<input name="trust1" maxlength="40" placeholder="e.g. Premium quality" /></label>
+            <label>Promise 2<input name="trust2" maxlength="40" placeholder="e.g. Safe &amp; secure checkout" /></label>
+          </div>
+          <label>Promise 3<input name="trust3" maxlength="40" placeholder="e.g. Doorstep delivery" /></label>
+          <label>Offer line<input name="offerNote" maxlength="120" placeholder="e.g. Extra discount on bulk orders" /></label>
+          <label>Customise options tab (one point per line)<textarea name="customizeInfo" rows="3" maxlength="1500"></textarea></label>
+          <label>How it works: 4 steps, one per line as "Title | short text"<textarea name="howItWorks" rows="4" maxlength="800"></textarea></label>
+          <label>Why choose us: one per line as "Title | short text"<textarea name="whyChoose" rows="6" maxlength="1200"></textarea></label>
+          <label>FAQs: question on the first line, answer below it, and an empty line between FAQs<textarea name="faqs" rows="8" maxlength="4000"></textarea></label>
+
+          <h3 class="settings-title">Policies (shown in the footer; leave empty to hide)</h3>
+          <p class="muted" style="font-size:13px;margin-top:-6px">Use <strong>Insert sample text</strong> to start from a draft written for this store. Fill in everything in [square brackets] and check that every statement is true for your business before saving. It is a good idea to have a lawyer or CA review them.</p>
+          <label>Privacy policy<textarea name="policyPrivacy" rows="4" maxlength="6000"></textarea></label>
+          <label>Delivery policy<textarea name="policyDelivery" rows="4" maxlength="6000"></textarea></label>
+          <label>Terms and conditions<textarea name="policyTerms" rows="4" maxlength="6000"></textarea></label>
+          <label>Return &amp; refund policy<textarea name="policyRefund" rows="4" maxlength="6000"></textarea></label>
+
+          <h3 class="settings-title">Footer</h3>
+          <label>Payment methods you accept (separate with commas)<input name="paymentMethods" maxlength="200" placeholder="e.g. Cash on delivery, UPI, Visa, Mastercard" /></label>
+          <label>About text<textarea name="footerAbout" maxlength="300" placeholder="A sentence or two about your store"></textarea></label>
+          <label>Address<textarea name="footerAddress" maxlength="200" placeholder="Shop address (leave empty to hide)"></textarea></label>
+          <div class="form-row">
+            <label>Phone<input name="footerPhone" maxlength="16" inputmode="tel" placeholder="+91 98765 43210" /></label>
+            <label>Email<input name="footerEmail" type="email" maxlength="120" placeholder="hello@yourstore.com" /></label>
+          </div>
+          <label>Instagram link<input name="instagram" placeholder="https://instagram.com/yourstore" /></label>
+          <label>Facebook link<input name="facebook" placeholder="https://facebook.com/yourstore" /></label>
+          <label>WhatsApp link<input name="whatsapp" placeholder="https://wa.me/919876543210" /></label>
+          <label>YouTube link<input name="youtube" placeholder="https://youtube.com/@yourstore" /></label>
+          <label>X (Twitter) link<input name="twitter" placeholder="https://x.com/yourstore" /></label>
+          <label>LinkedIn link<input name="linkedin" placeholder="https://linkedin.com/company/yourstore" /></label>
+          <label>Pinterest link<input name="pinterest" placeholder="https://pinterest.com/yourstore" /></label>
+          <small class="muted">Each icon appears in the shop footer as soon as its link is filled in. Leave a link empty to hide that icon.</small>
+
+          <p class="form-error" id="settingsError" hidden></p>
+          <div class="modal-actions"><button type="submit" class="adm-btn-gold">Save settings</button></div>
+        </form>
+      </div>
+
+      <div id="tab-profile" hidden>
+        <div class="adm-card adm-profile">
+          <span class="adm-avatar adm-avatar-lg" id="profileAvatar">A</span>
+          <div><h2 id="profileName">Admin</h2><p class="muted" id="profileEmail"></p><span class="adm-status">Administrator</span></div>
+        </div>
+        <form id="passwordForm" class="settings-card adm-card" novalidate>
+          <h3 class="settings-title">Admin password</h3>
+          <label>Current password<input type="password" name="current" required autocomplete="current-password" /></label>
+          <div class="form-row">
+            <label>New password (at least 8 characters)<input type="password" name="next" required minlength="8" autocomplete="new-password" /></label>
+            <label>Repeat new password<input type="password" name="confirm" required minlength="8" autocomplete="new-password" /></label>
+          </div>
+          <p class="form-error" id="passwordError" hidden></p>
+          <div class="modal-actions"><button type="submit" class="adm-btn-gold">Change password</button></div>
+        </form>
+      </div>
+
+      <div id="tab-orders" hidden>
+        <!-- Status tiles: click to filter -->
+        <div class="ao-tiles" id="orderTiles"></div>
+        <div class="adm-card ao-panel">
+          <div class="ao-toolbar">
+            <label class="ao-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+              <input type="search" id="orderSearch" placeholder="Search order #, customer, phone, email or product" aria-label="Search orders" /></label>
+            <label class="ao-sort">Sort
+              <select id="orderSort">
+                <option value="new">Newest first</option>
+                <option value="old">Oldest first</option>
+                <option value="high">Highest total</option>
+                <option value="low">Lowest total</option>
+              </select>
+            </label>
+          </div>
+          <div class="ao-list" id="orderRows"></div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Product editor (full page) -->
+  <section class="modal adm-card adm-editor" id="productModal" hidden>
+    <button type="button" class="adm-back" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg>Back to products</button>
+    <form id="productForm" novalidate>
+      <h2 id="productTitle">Add product</h2>
+      <input type="hidden" name="id" />
+      <label>Name<input name="name" required /></label>
+      <label>Category<select name="category" id="pfCategory"></select></label>
+      <p class="pf-kind-hint" id="pfKindHint" hidden></p>
+      <div class="form-row">
+        <label>Price (₹)<input name="price" type="number" min="0" required /></label>
+        <label>Stock<input name="stock" type="number" min="0" value="100" /></label>
+      </div>
+      <div class="form-row">
+        <label>Original price / MRP (₹)<input name="mrp" type="number" min="0" placeholder="Optional, shows % OFF" /></label>
+        <label data-kinds="apparel">Minimum order (pcs)<input name="minQty" type="number" min="1" max="99" value="1" /></label>
+      </div>
+      <label>Corner badge (optional)<input name="badge" maxlength="20" placeholder="e.g. 100% COTTON" /></label>
+      <label data-kinds="apparel">Sizes customers choose from (optional, separate with commas)<input name="sizes" maxlength="300" placeholder="e.g. S, M, L, XL, 2XL" /></label>
+      <label data-kinds="apparel">Colours customers choose from (optional, separate with commas)<input name="colors" maxlength="400" placeholder="e.g. Black, White, Navy #1d2a4a, Maroon" /></label>
+      <div class="image-field">
+        <span class="image-field-label">Product image (optional)</span>
+        <div class="image-field-row">
+          <div class="image-preview" id="pfPreview" aria-hidden="true"></div>
+          <div class="image-field-actions">
+            <input type="file" id="pfFile" accept="image/jpeg,image/png,image/webp,image/gif" hidden />
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button type="button" class="btn-ghost" id="pfUpload">Upload image</button>
+              <button type="button" class="btn-ghost" id="pfRemove" hidden>Remove</button>
+            </div>
+            <small class="muted" id="pfStatus">JPG, PNG, WebP or GIF, up to 5 MB.</small>
+          </div>
+        </div>
+        <label>…or paste an image URL<input name="imageUrl" id="pfImageUrl" placeholder="https://… or /images/…" /></label>
+      </div>
+      <div class="image-field" data-kinds="apparel">
+        <span class="image-field-label">Second image, shown when a shopper hovers over the card (optional), e.g. another colour or the back view</span>
+        <div class="image-field-row">
+          <div class="image-preview" id="pfPreview2" aria-hidden="true"></div>
+          <div class="image-field-actions">
+            <input type="file" id="pfFile2" accept="image/jpeg,image/png,image/webp,image/gif" hidden />
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button type="button" class="btn-ghost" id="pfUpload2">Upload second image</button>
+              <button type="button" class="btn-ghost" id="pfRemove2" hidden>Remove</button>
+            </div>
+            <small class="muted" id="pfStatus2">Without a second image, the photo zooms on hover instead.</small>
+          </div>
+        </div>
+        <input type="hidden" name="hoverImage" id="pfHoverImage" />
+      </div>
+      <div class="image-field">
+        <span class="image-field-label">More photos for the product page (optional, up to 8)</span>
+        <div class="gallery-admin" id="pfGallery"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <input type="file" id="pfGalleryFile" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden />
+          <button type="button" class="btn-ghost" id="pfGalleryAdd">Add photos</button>
+          <small class="muted" id="pfGalleryStatus">You can pick several photos at once.</small>
+        </div>
+        <input type="hidden" name="gallery" id="pfGalleryValue" value="[]" />
+      </div>
+      <div class="image-field" id="pfColorPhotosWrap" data-kinds="apparel" hidden>
+        <span class="image-field-label">Photo for each colour (optional): shown when a shopper picks that colour</span>
+        <div class="color-photos-admin" id="pfColorPhotos"></div>
+        <input type="hidden" name="colorImages" id="pfColorImagesValue" value="{}" />
+      </div>
+      <fieldset class="book-fields" data-kinds="book pack">
+        <legend id="pfDetailsLegend">Book details (for books and e-books). Tip: use a portrait cover (about 2 : 3) as the main image</legend>
+        <label data-kinds="book">Subtitle (optional)<input name="subtitle" maxlength="120" placeholder="e.g. A practical guide for beginners" /></label>
+        <div class="form-row" data-kinds="book">
+          <label>Series (optional)<input name="series" maxlength="80" placeholder="e.g. Learn to Code" /></label>
+          <label>Book number in series<input name="seriesNo" type="number" min="0" max="999" placeholder="e.g. 1" /></label>
+        </div>
+        <div class="form-row" data-kinds="book">
+          <label>Publisher / imprint<input name="publisher" maxlength="100" placeholder="e.g. Sonnad Studio" /></label>
+          <label>Release date<input name="releaseDate" type="date" /></label>
+        </div>
+        <div class="form-row" data-kinds="book">
+          <label>Pages<input name="pages" type="number" min="0" placeholder="e.g. 208" /></label>
+          <label>Total words (for "hours to read")<input name="words" type="number" min="0" placeholder="e.g. 56000" /></label>
+        </div>
+        <div class="form-row" data-kinds="book">
+          <label>Author / brand<input name="author" maxlength="100" placeholder="e.g. Sonnad Studio" /></label>
+          <label>ISBN (optional)<input name="isbn" maxlength="20" placeholder="e.g. 978-93-12345-67-8" /></label>
+        </div>
+        <label data-kinds="book pack"><span id="pfSpecsLabel">Specifications: one per line as "Label | Value"</span>
+          <textarea name="specs" rows="5" maxlength="1500" placeholder="Category | Programming&#10;Language | English&#10;Pages | 352&#10;Level | Beginner to advanced&#10;Published | 2026"></textarea>
+        </label>
+        <label data-kinds="book pack"><span id="pfInsideLabel">What you will learn / what's inside (optional, one point per line)</span>
+          <textarea name="learnPoints" rows="4" maxlength="1500" placeholder="Software development concepts&#10;Writing clean code&#10;Problem-solving techniques"></textarea>
+        </label>
+        <div class="image-field" data-kinds="book">
+          <span class="image-field-label">"Look inside" pages: preview page images shoppers can flip through (optional, up to 8)</span>
+          <div class="gallery-admin" id="pfPreviewPages"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input type="file" id="pfPreviewFile" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden />
+            <button type="button" class="btn-ghost" id="pfPreviewAdd">Add preview pages</button>
+            <small class="muted" id="pfPreviewStatus">Upload them in page order.</small>
+          </div>
+          <input type="hidden" name="previewPages" id="pfPreviewValue" value="[]" />
+        </div>
+        <label class="check-row-inline" data-kinds="book pack"><input type="checkbox" name="isDigital" id="pfIsDigital" /> Sell as a digital download (PDF / EPUB, or a ZIP pack of files). Customers download it after their order is confirmed; free (₹0) downloads are instant.</label>
+        <div class="image-field" id="pfDigitalWrap" hidden>
+          <span class="image-field-label">Download file (PDF, EPUB or ZIP, up to 50 MB). Stored privately, so only buyers can download it.</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input type="file" id="pfDigitalFile" accept=".pdf,.epub,.zip,application/pdf,application/epub+zip,application/zip" hidden />
+            <button type="button" class="btn-ghost" id="pfDigitalUpload">Upload book file</button>
+            <small class="muted" id="pfDigitalStatus">No file yet.</small>
+          </div>
+          <input type="hidden" name="digitalFile" id="pfDigitalFileValue" />
+          <input type="hidden" name="digitalName" id="pfDigitalNameValue" />
+        </div>
+      </fieldset>
+      <label>Highlight (optional, one short line)<input name="highlight" maxlength="200"placeholder="e.g. 180 GSM breathable fabric" /></label>
+      <label>Description (one point per line)<textarea name="description" rows="5" maxlength="2000" placeholder="100% polyester fabric&#10;180 GSM breathable fabric&#10;Ribbed collar and sleeves"></textarea></label>
+      <label data-kinds="apparel">Size chart (optional): one row per line, columns separated by |
+        <textarea name="sizeChart" rows="4" maxlength="2000" placeholder="Size | Chest (in) | Length (in)&#10;S | 38 | 26&#10;M | 40 | 27&#10;L | 42 | 28"></textarea>
+      </label>
+      <label style="flex-direction:row;align-items:center;justify-content:flex-start;gap:8px"><input type="checkbox" name="active" checked style="width:auto;flex:none;margin:0" /> Visible in store</label>
+      <p class="form-error" id="productError" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn-gold">Save</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Category editor (full page) -->
+  <section class="modal adm-card adm-editor adm-editor-narrow" id="categoryModal" hidden>
+    <button type="button" class="adm-back" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg>Back to categories</button>
+    <form id="categoryForm" novalidate>
+      <h2 id="categoryTitle">Add category</h2>
+      <input type="hidden" name="id" />
+      <label>Name<input name="label" required maxlength="40" placeholder="e.g. Mugs" /></label>
+      <label>Tagline: short line under this section's heading on the home page (optional)<input name="tagline" maxlength="120" placeholder="e.g. Wear your ideas with style." /></label>
+      <label>Icon (shown when a product has no photo)
+        <select name="icon">
+          <option value="book">Book</option><option value="shirt">T-shirt</option><option value="briefcase">Briefcase</option>
+          <option value="gift">Gift</option><option value="tag">Tag</option><option value="box">Box</option>
+        </select>
+      </label>
+      <p class="form-error" id="categoryError" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn-gold">Save</button>
+      </div>
+    </form>
+  </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="/env.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
